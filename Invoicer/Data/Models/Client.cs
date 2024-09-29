@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Invoicer.Data.Models;
 
-public class Client
+public class Client : IEntity
 {
     public int Id { get; set; }
 

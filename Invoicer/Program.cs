@@ -23,6 +23,8 @@ else {
 
 builder.Services.AddInvoicerIdentity();
 
+builder.Services.AddRepositories();
+
 var app = builder.Build();
 
 await app.AddAdminUserAsync();

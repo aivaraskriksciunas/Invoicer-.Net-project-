@@ -4,8 +4,6 @@
 
 <form asp-action="Edit" asp-route-id="@Model.Id" method="post">
     
-    @* <input type="hidden" name="_method" value="PUT" /> *@
-
     <div class="form-group">
         <label asp-for="@Model.FullName"></label>
         <input asp-for="@Model.FullName" class="form-control">

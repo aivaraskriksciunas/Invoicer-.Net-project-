@@ -3,9 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Invoicer.Data.Models;
 
-public class BillableRecord
+public class BillableRecord : IEntity
 {
-    [Required]
     public int Id { get; set; }
 
     [Required]
