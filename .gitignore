@@ -1,0 +1,8 @@
+.vs
+.vscode
+.parcel-cache
+node_modules
+bin
+obj
+wwwroot/dist
+database.dat

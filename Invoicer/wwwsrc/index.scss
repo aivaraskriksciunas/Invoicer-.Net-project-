@@ -1,0 +1,26 @@
+@import "bootstrap/scss/bootstrap";
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    border-bottom: 1px solid var( --bs-border-color );
+}
+
+.site-container {
+    display: flex;
+    min-height: 99vh;
+
+    .site-sidebar {
+        width: 15%;
+        padding: 1.5em;
+        border-right: 1px solid var( --bs-border-color );
+    }
+
+    .site-content {
+        flex-grow: 1;
+        padding: 1.5em;
+    }
+}

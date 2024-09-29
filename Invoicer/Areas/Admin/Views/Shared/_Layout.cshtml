@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoicer - @ViewData["Title"]</title>
+    <link rel="stylesheet" href="/dist/index.css" asp-append-version="true" />
+    <script src="/dist/index.js" asp-append-version="true"></script>
+</head>
+<body data-bs-theme="dark">
+    <header>
+        <nav class="navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">Invoicer admin</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="site-container">
+        <aside class="site-sidebar col-2">
+            Sidebar
+        </aside>
+
+        <div class="site-content col">
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

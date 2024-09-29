@@ -1,0 +1,22 @@
+@model IEnumerable<Invoicer.Data.Models.User>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor( m => m.First().Id )</th>
+            <th>@Html.DisplayNameFor( m => m.First().Email )</th>
+            <th>@Html.DisplayNameFor( m => m.First().UserName )</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach ( var user in Model ) {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.Email</td>
+                <td>@user.UserName</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,26 @@
+@model Invoicer.Areas.Admin.Features.BillableUnit.BillableUnitDto;
+
+<h2>Editing default unit &quot;@Model.FullName &quot;</h2>
+
+<form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+    
+    @* <input type="hidden" name="_method" value="PUT" /> *@
+
+    <div class="form-group">
+        <label asp-for="@Model.FullName"></label>
+        <input asp-for="@Model.FullName" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.ShortName"></label>
+        <input asp-for="@Model.ShortName" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.WholeValuesOnly">
+        </label>
+        <input asp-for="@Model.WholeValuesOnly">
+    </div>
+
+    <input type='submit' class='btn btn-primary' value="Save changes">
+</form>

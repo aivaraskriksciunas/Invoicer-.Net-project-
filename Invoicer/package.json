@@ -1,0 +1,23 @@
+{
+  "name": "invoicer",
+  "version": "1.0.0",
+  "source": [
+    "wwwsrc/index.js",
+    "wwwsrc/index.scss"
+  ],
+  "scripts": {
+    "watch": "parcel watch --dist-dir wwwroot/dist",
+    "build": "parcel build --dist-dir wwwroot/dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.12.0",
+    "parcel": "^2.12.0"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.3"
+  }
+}

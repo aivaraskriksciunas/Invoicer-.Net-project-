@@ -1,0 +1,29 @@
+@model IEnumerable<Invoicer.Data.Models.BillableUnit>
+
+<a asp-action="Create">New</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor( m => m.First().Id )</th>
+            <th>@Html.DisplayNameFor( m => m.First().FullName )</th>
+            <th>@Html.DisplayNameFor( m => m.First().ShortName )</th>
+            <th>@Html.DisplayNameFor( m => m.First().WholeValuesOnly )</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach ( var unit in Model ) {
+            <tr>
+                <td>@unit.Id</td>
+                <td>@unit.FullName</td>
+                <td>@unit.ShortName</td>
+                <td>@unit.WholeValuesOnly</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@unit.Id">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
