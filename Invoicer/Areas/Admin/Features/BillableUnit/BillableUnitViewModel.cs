@@ -5,7 +5,7 @@ using Invoicer.Data.Models;
 
 namespace Invoicer.Areas.Admin.Features.BillableUnit;
 
-public class BillableUnitDto
+public class BillableUnitViewModel
 {
     public int? Id { get; set; }
 
@@ -33,9 +33,9 @@ public class BillableUnitDto
         };
     }
 
-    public static BillableUnitDto FromBillableUnit( Data.Models.BillableUnit billableUnit ) 
+    public static BillableUnitViewModel FromBillableUnit( Data.Models.BillableUnit billableUnit ) 
     {
-        return new BillableUnitDto {
+        return new BillableUnitViewModel {
             Id = billableUnit.Id,
             ShortName = billableUnit.ShortName,
             FullName = billableUnit.FullName,

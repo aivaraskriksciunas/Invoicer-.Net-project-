@@ -34,7 +34,7 @@ public class BillableUnitController : BaseAdminController
 
     [HttpPost]
     public async Task<IActionResult> Create(
-        [Bind] BillableUnitDto model
+        [Bind] BillableUnitViewModel model
     )
     {
         if ( ModelState.IsValid )
@@ -59,11 +59,11 @@ public class BillableUnitController : BaseAdminController
             return NotFound();
         }
 
-        return View( BillableUnitDto.FromBillableUnit( unit ) );
+        return View( BillableUnitViewModel.FromBillableUnit( unit ) );
     }
 
     [HttpPost]
-    public async Task<IActionResult> Edit( int id, [Bind]BillableUnitDto model )
+    public async Task<IActionResult> Edit( int id, [Bind]BillableUnitViewModel model )
     {
         if ( ! await _repository.ExistsAsync( id ) ) {
             return NotFound();
@@ -100,7 +100,6 @@ public class BillableUnitController : BaseAdminController
     }
 
     [HttpPost]
-    [Route("Delete/{id}")]
     public async Task<IActionResult> DeleteConfirm( int id )
     {
         var unit = await _repository.FindByIdAsync( id );

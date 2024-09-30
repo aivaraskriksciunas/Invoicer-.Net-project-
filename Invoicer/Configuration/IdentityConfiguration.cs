@@ -4,14 +4,15 @@ using Invoicer.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Invoicer.Services;
+namespace Invoicer.Configuration;
 
-public static class IdentityConfigurationService
+public static class IdentityConfiguration
 {
     public static void AddInvoicerIdentity( this IServiceCollection services )
     {
         services.AddDefaultIdentity<User>( options => options.SignIn.RequireConfirmedAccount = false )
             .AddRoles<IdentityRole>()
+            .AddApiEndpoints()
             .AddEntityFrameworkStores<InvoicerDbContext>();
         services.AddRazorPages();
 
