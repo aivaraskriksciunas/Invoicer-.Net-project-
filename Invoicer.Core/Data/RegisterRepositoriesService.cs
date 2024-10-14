@@ -1,7 +1,7 @@
-﻿using Invoicer.Data.Models;
-using Invoicer.Data.Repositories;
+﻿using Invoicer.Core.Data.Models;
+using Invoicer.Core.Data.Repositories;
 
-namespace Invoicer.Data;
+namespace Invoicer.Core.Data;
 
 public static class RegisterRepositoriesService
 {

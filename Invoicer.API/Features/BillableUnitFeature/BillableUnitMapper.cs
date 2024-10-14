@@ -1,7 +1,7 @@
-﻿using Invoicer.Data.Models;
+﻿using Invoicer.Core.Data.Models;
 using Riok.Mapperly.Abstractions;
 
-namespace Invoicer.Api.BillableUnitFeature;
+namespace Invoicer.Api.Features.BillableUnitFeature;
 
 [Mapper]
 public static partial class BillableUnitMapper

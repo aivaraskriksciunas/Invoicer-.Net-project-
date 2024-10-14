@@ -1,7 +1,7 @@
 using System;
 using Microsoft.AspNetCore.Identity;
 
-namespace Invoicer.Data.Models;
+namespace Invoicer.Core.Data.Models;
 
 public class User : IdentityUser
 {

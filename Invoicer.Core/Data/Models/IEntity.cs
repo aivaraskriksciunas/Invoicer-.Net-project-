@@ -1,4 +1,4 @@
-﻿namespace Invoicer.Data.Models;
+﻿namespace Invoicer.Core.Data.Models;
 
 public interface IEntity
 {

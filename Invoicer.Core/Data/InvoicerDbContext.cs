@@ -1,9 +1,9 @@
 using System;
-using Invoicer.Data.Models;
+using Invoicer.Core.Data.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Invoicer.Data;
+namespace Invoicer.Core.Data;
 
 public class InvoicerDbContext : IdentityDbContext<User>
 {

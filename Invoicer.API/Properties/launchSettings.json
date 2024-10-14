@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Invoicer.Api": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:47968;http://localhost:47969"
+    }
+  }
+}

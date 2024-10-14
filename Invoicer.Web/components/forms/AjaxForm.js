@@ -1,7 +1,7 @@
 'use client'
 
 import { useForm, SubmitHandler } from "react-hook-form"
-import { createContext } from 'react'
+import { createContext, useState } from 'react'
 import { Button } from '@chakra-ui/react'
 import backend from '@/backend'
 
@@ -11,7 +11,9 @@ export default function AjaxForm({
     action,
     method,
     onSuccess,
+    onError,
     children,
+    urlParams,
 }) {
 
     const {
@@ -21,12 +23,20 @@ export default function AjaxForm({
         formState: { errors },
     } = useForm()
 
+    const [ isLoading, setIsLoading ] = useState( false )
+
     const onSubmit = async ( data ) => {
 
+        urlParams = urlParams || {}
+
         try {
-            let result = backend.request( {
+            setIsLoading( true );
+
+            let result = await backend.request( {
                 url: action,
                 method: method || 'get',
+                data,
+                params: urlParams,
             } )
 
             if ( typeof onSuccess === 'function' ) {
@@ -34,8 +44,15 @@ export default function AjaxForm({
             }
         }
         catch ( e ) {
-            console.log( e )
+            if ( onError ) {
+                onError( e.statusCode, e.response )
+            }
+            else {
+                console.log( e )
+            }
         }
+
+        setIsLoading( false )
     }
 
     return (
@@ -46,7 +63,7 @@ export default function AjaxForm({
             </AjaxFormContext.Provider>
 
             <div>
-                <Button type="submit">
+                <Button isLoading={isLoading} type="submit">
                     Submit
                 </Button>
             </div>

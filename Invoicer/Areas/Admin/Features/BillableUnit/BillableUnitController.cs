@@ -1,6 +1,6 @@
 using System;
-using Invoicer.Data;
-using Invoicer.Data.Repositories;
+using Invoicer.Core.Data;
+using Invoicer.Core.Data.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,11 +9,11 @@ namespace Invoicer.Areas.Admin.Features.BillableUnit;
 public class BillableUnitController : BaseAdminController
 {
     private readonly InvoicerDbContext _db;
-    private readonly IRepository<Data.Models.BillableUnit> _repository;
+    private readonly IRepository<Core.Data.Models.BillableUnit> _repository;
 
     public BillableUnitController( 
         InvoicerDbContext db,
-        IRepository<Data.Models.BillableUnit> repository 
+        IRepository<Core.Data.Models.BillableUnit> repository 
     )
     {
         _db = db;

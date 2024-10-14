@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using Invoicer.Data.Models;
+using Invoicer.Core.Data.Models;
 
 namespace Invoicer.Areas.Admin.Features.BillableUnit;
 
@@ -24,16 +24,16 @@ public class BillableUnitViewModel
     [DisplayName("Allow whole values only")]
     public required bool WholeValuesOnly { get; set; } = false;
 
-    public Data.Models.BillableUnit ToBillableUnit()
+    public Core.Data.Models.BillableUnit ToBillableUnit()
     {
-        return new Data.Models.BillableUnit {
+        return new Core.Data.Models.BillableUnit {
             ShortName = ShortName,
             FullName = FullName,
             WholeValuesOnly = WholeValuesOnly
         };
     }
 
-    public static BillableUnitViewModel FromBillableUnit( Data.Models.BillableUnit billableUnit ) 
+    public static BillableUnitViewModel FromBillableUnit( Core.Data.Models.BillableUnit billableUnit ) 
     {
         return new BillableUnitViewModel {
             Id = billableUnit.Id,

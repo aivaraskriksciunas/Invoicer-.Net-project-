@@ -1,18 +1,18 @@
-using Invoicer.Data;
+using Invoicer.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using Invoicer.Configuration;
-using Microsoft.OpenApi.Models;
-using Invoicer.Data.Models;
+using Invoicer.Core.Data.Models;
+using Invoicer.Api.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 if ( builder.Environment.IsProduction() ) {
-    builder.Services.AddDbContext<InvoicerDbContext>( 
-        options => options.UseSqlServer( 
-            builder.Configuration.GetConnectionString( "InvoicerDb" ),
-            options => options.EnableRetryOnFailure() 
-        )
-    );
+    //builder.Services.AddDbContext<InvoicerDbContext>( 
+    //    options => options.UseSqlServer( 
+    //        builder.Configuration.GetConnectionString( "InvoicerDb" ),
+    //        options => options.EnableRetryOnFailure() 
+    //    )
+    //);
 }
 else {
     builder.Services.AddDbContext<InvoicerDbContext>( 
@@ -26,21 +26,26 @@ else {
 builder.Services.AddInvoicerIdentity();
 builder.Services.AddRepositories();
 
-builder.Services.AddSwaggerGen();
-builder.Services.AddEndpointsApiExplorer();
-
+builder.Services.AddApiDocumentation();
 
 builder.Services.AddCors( options =>
 {
     options.AddDefaultPolicy(
         policy =>
         {
-            policy.AllowAnyOrigin()
-                .AllowAnyMethod()
+            //policy.AllowAnyMethod()
+            //    .AllowAnyHeader();
+
+            //policy.AllowCredentials();
+
+            policy.WithOrigins( "http://localhost:3000" )
+                .AllowCredentials()
+                .AllowAnyHeader()
                 .AllowAnyMethod();
         } );
 } );
 
+builder.Services.AddControllers();
 
 
 var app = builder.Build();
@@ -53,11 +58,12 @@ app.UseCors();
 // Add auth routes
 app.MapIdentityApi<User>();
 
-if ( app.Environment.IsDevelopment() )
+if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseApiDocumentationUI();
 }
+
+app.UseCookiePolicy();
 
 app.UseStaticFiles();
 app.UseAuthentication();
@@ -76,6 +82,5 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
 
 app.Run();

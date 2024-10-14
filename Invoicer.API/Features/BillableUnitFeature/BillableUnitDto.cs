@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 
-namespace Invoicer.Api.BillableUnitFeature;
+namespace Invoicer.Api.Features.BillableUnitFeature;
 
 public class BillableUnitDto
 {

@@ -1,8 +1,9 @@
 using System;
-using Invoicer.Data.Models;
-using Invoicer.Data;
+using Invoicer.Core.Data.Models;
+using Invoicer.Core.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Invoicer.Configuration;
 
@@ -10,19 +11,13 @@ public static class IdentityConfiguration
 {
     public static void AddInvoicerIdentity( this IServiceCollection services )
     {
-        services.AddDefaultIdentity<User>( options => options.SignIn.RequireConfirmedAccount = false )
+        services.AddIdentityApiEndpoints<User>( options => options.SignIn.RequireConfirmedAccount = false )
             .AddRoles<IdentityRole>()
-            .AddApiEndpoints()
             .AddEntityFrameworkStores<InvoicerDbContext>();
+
         services.AddRazorPages();
 
-        // Ensure all users are authenticated by default
-        services.AddAuthorization(options =>
-        {
-            options.FallbackPolicy = new AuthorizationPolicyBuilder()
-                .RequireAuthenticatedUser()
-                .Build();
-        });
+        services.AddAuthentication().AddCookie();
 
         services.Configure<IdentityOptions>(options =>
         {

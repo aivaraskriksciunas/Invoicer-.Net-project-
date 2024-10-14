@@ -1,7 +1,7 @@
-﻿using Invoicer.Data.Models;
+﻿using Invoicer.Core.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Invoicer.Data.Repositories;
+namespace Invoicer.Core.Data.Repositories;
 
 public class Repository<T> : IRepository<T> where T : class, IEntity
 {

@@ -4,8 +4,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Invoicer", "Invoicer\Invoicer.csproj", "{9A04E69B-8020-4E5A-8B4B-34205A1CAFAA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{257B84A2-7F5E-455D-B958-D1A0EC95EDE7} = {257B84A2-7F5E-455D-B958-D1A0EC95EDE7}
+	EndProjectSection
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Invoicer.Web", "Invoicer.Web\Invoicer.Web.esproj", "{450867B3-0996-4F26-A09E-73E77549D8A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invoicer.Api", "Invoicer.API\Invoicer.Api.csproj", "{257B84A2-7F5E-455D-B958-D1A0EC95EDE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invoicer.Core", "Invoicer.Core\Invoicer.Core.csproj", "{B6EA0FD5-DCFB-44A0-952D-43F5B2096080}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +30,14 @@ Global
 		{450867B3-0996-4F26-A09E-73E77549D8A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{450867B3-0996-4F26-A09E-73E77549D8A1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{450867B3-0996-4F26-A09E-73E77549D8A1}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{257B84A2-7F5E-455D-B958-D1A0EC95EDE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{257B84A2-7F5E-455D-B958-D1A0EC95EDE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{257B84A2-7F5E-455D-B958-D1A0EC95EDE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{257B84A2-7F5E-455D-B958-D1A0EC95EDE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6EA0FD5-DCFB-44A0-952D-43F5B2096080}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6EA0FD5-DCFB-44A0-952D-43F5B2096080}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6EA0FD5-DCFB-44A0-952D-43F5B2096080}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6EA0FD5-DCFB-44A0-952D-43F5B2096080}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,5 @@
 using System;
-using Invoicer.Data;
+using Invoicer.Core.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

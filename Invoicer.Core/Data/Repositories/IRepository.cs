@@ -1,7 +1,7 @@
-using Invoicer.Data.Models;
+using Invoicer.Core.Data.Models;
 using System;
 
-namespace Invoicer.Data.Repositories;
+namespace Invoicer.Core.Data.Repositories;
 
 public interface IRepository <T> where T : IEntity
 {

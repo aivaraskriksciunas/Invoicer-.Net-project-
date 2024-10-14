@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Invoicer.Data.Models;
+namespace Invoicer.Core.Data.Models;
 
 public class BillableRecord : IEntity
 {

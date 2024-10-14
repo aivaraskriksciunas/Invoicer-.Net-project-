@@ -1,10 +1,10 @@
-﻿using Invoicer.Data;
-using Invoicer.Data.Models;
-using Invoicer.Data.Repositories;
+﻿using Invoicer.Core.Data;
+using Invoicer.Core.Data.Models;
+using Invoicer.Core.Data.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Invoicer.Api.BillableUnitFeature;
+namespace Invoicer.Api.Features.BillableUnitFeature;
 
 
 public class BillableUnitController : BaseApiController
