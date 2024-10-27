@@ -1,0 +1,30 @@
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: invoicer-db
+    environment:
+      POSTGRES_USER: root         
+      POSTGRES_PASSWORD: admin 
+      POSTGRES_DB: InvoicerDb         
+    ports:
+      - "5432:5432" 
+    volumes:
+      - ./dev-data/postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: invoicer-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com  
+      PGADMIN_DEFAULT_PASSWORD: admin         
+    ports:
+      - "8008:80"    
+    depends_on:
+      - postgres
+    volumes:
+      - ./dev-data/pgadmin_data:/var/lib/pgadmin
+
+volumes:
+  postgres_data:
+  pgadmin_data:  

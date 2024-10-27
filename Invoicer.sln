@@ -10,9 +10,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Invoicer", "Invoicer\Invoic
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Invoicer.Web", "Invoicer.Web\Invoicer.Web.esproj", "{450867B3-0996-4F26-A09E-73E77549D8A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invoicer.Api", "Invoicer.API\Invoicer.Api.csproj", "{257B84A2-7F5E-455D-B958-D1A0EC95EDE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Invoicer.Api", "Invoicer.API\Invoicer.Api.csproj", "{257B84A2-7F5E-455D-B958-D1A0EC95EDE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invoicer.Core", "Invoicer.Core\Invoicer.Core.csproj", "{B6EA0FD5-DCFB-44A0-952D-43F5B2096080}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Invoicer.Core", "Invoicer.Core\Invoicer.Core.csproj", "{B6EA0FD5-DCFB-44A0-952D-43F5B2096080}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Invoicer.Tests", "Invoicer.Tests\Invoicer.Tests.csproj", "{03F3896E-44B6-46A7-85BF-BF91E45B6F3F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dev Services", "Dev Services", "{DAC05566-47ED-4D57-A75A-6AACCF1B40CF}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +45,10 @@ Global
 		{B6EA0FD5-DCFB-44A0-952D-43F5B2096080}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6EA0FD5-DCFB-44A0-952D-43F5B2096080}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6EA0FD5-DCFB-44A0-952D-43F5B2096080}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03F3896E-44B6-46A7-85BF-BF91E45B6F3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03F3896E-44B6-46A7-85BF-BF91E45B6F3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03F3896E-44B6-46A7-85BF-BF91E45B6F3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03F3896E-44B6-46A7-85BF-BF91E45B6F3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

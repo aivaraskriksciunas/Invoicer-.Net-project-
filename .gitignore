@@ -7,3 +7,5 @@ obj
 wwwroot/dist
 database.dat
 .next
+/dev-data/pgadmin_data/**/*
+/dev-data/postgres_data/**/*

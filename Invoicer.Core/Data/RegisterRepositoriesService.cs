@@ -8,5 +8,7 @@ public static class RegisterRepositoriesService
     public static void AddRepositories( this IServiceCollection services )
     {
         services.AddScoped<IRepository<BillableUnit>, Repository<BillableUnit>>();
+
+        services.AddScoped<IRepository<Client>, Repository<Client>>();
     }
 }

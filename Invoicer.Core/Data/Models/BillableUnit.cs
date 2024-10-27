@@ -18,5 +18,6 @@ public class BillableUnit : IEntity
     public bool WholeValuesOnly { get; set; } = false;
 
     // Stores the user that created this unit
-    public User? user { get; set; }
+    public string? UserId { get; set; } = null;
+    public User? User { get; set; }
 }

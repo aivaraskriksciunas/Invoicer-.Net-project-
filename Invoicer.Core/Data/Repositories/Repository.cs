@@ -6,6 +6,12 @@ namespace Invoicer.Core.Data.Repositories;
 public class Repository<T> : IRepository<T> where T : class, IEntity
 {
     private InvoicerDbContext _db;
+    public IQueryable<T> Query { 
+        get
+        {
+            return _db.Set<T>().AsQueryable<T>();
+        }
+    }
 
     public Repository( InvoicerDbContext dbContext )
     {
@@ -58,4 +64,5 @@ public class Repository<T> : IRepository<T> where T : class, IEntity
 
         return true;
     }
+
 }

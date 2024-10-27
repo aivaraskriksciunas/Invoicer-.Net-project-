@@ -4,6 +4,7 @@ using Invoicer.Core.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Invoicer.Data;
 
 namespace Invoicer.Configuration;
 
@@ -11,6 +12,9 @@ public static class IdentityConfiguration
 {
     public static void AddInvoicerIdentity( this IServiceCollection services )
     {
+        // Register admin user seeder 
+        services.AddTransient<IDatabaseSeeder, DatabaseSeeder>();
+
         services.AddIdentityApiEndpoints<User>( options => options.SignIn.RequireConfirmedAccount = false )
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<InvoicerDbContext>();
@@ -39,26 +43,6 @@ public static class IdentityConfiguration
             "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
             options.User.RequireUniqueEmail = true;
         });
-    }
 
-    public static async Task AddAdminUserAsync( this IApplicationBuilder app )
-    {
-        using ( var scope = app.ApplicationServices.CreateScope() )
-        {
-            var user = new User{ UserName = "admin@test.com", Email = "admin@test.com", EmailConfirmed = true };
-            var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
-            var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            
-            if ( ! await roleManager.RoleExistsAsync( User.Roles.Admin ) ) {
-                await roleManager.CreateAsync( new IdentityRole( User.Roles.Admin ) );
-            }
-            
-            var usersInRole = await userManager.GetUsersInRoleAsync( User.Roles.Admin );
-            if ( !usersInRole.Any() ) 
-            {
-                await userManager.CreateAsync( user, "admin" );
-                await userManager.AddToRoleAsync( user, User.Roles.Admin );
-            }
-        }
     }
 }

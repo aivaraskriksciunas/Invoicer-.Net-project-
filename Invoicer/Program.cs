@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Invoicer.Configuration;
 using Invoicer.Core.Data.Models;
 using Invoicer.Api.Configuration;
+using Invoicer.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,9 +16,10 @@ if ( builder.Environment.IsProduction() ) {
     //);
 }
 else {
-    builder.Services.AddDbContext<InvoicerDbContext>( 
-        options => options.UseSqlite( 
-            builder.Configuration.GetConnectionString( "InvoicerDbSqlite" )
+    builder.Services.AddDbContext<InvoicerDbContext>(
+        options => options.UseNpgsql(
+            builder.Configuration.GetConnectionString( "InvoicerDb" ),
+            builder => builder.MigrationsAssembly( "Invoicer" )
         )
     );
 }
@@ -33,11 +35,6 @@ builder.Services.AddCors( options =>
     options.AddDefaultPolicy(
         policy =>
         {
-            //policy.AllowAnyMethod()
-            //    .AllowAnyHeader();
-
-            //policy.AllowCredentials();
-
             policy.WithOrigins( "http://localhost:3000" )
                 .AllowCredentials()
                 .AllowAnyHeader()
@@ -49,9 +46,6 @@ builder.Services.AddControllers();
 
 
 var app = builder.Build();
-
-// Run initial database seed
-await app.AddAdminUserAsync();
 
 app.UseCors();
 
@@ -83,4 +77,13 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+// Run initial database seed
+using (var scope = app.Services.CreateScope())
+{
+    var seeder = scope.ServiceProvider.GetService<IDatabaseSeeder>();
+    await seeder.SeedData();
+}
+
 app.Run();
+
+public partial class Program { }

@@ -15,4 +15,12 @@ public class InvoicerDbContext : IdentityDbContext<User>
     public DbSet<Client> Clients { get; set; }
 
     public DbSet<BillableUnit> BillableUnits { get; set; }
+
+
+    protected override void OnModelCreating( ModelBuilder builder )
+    {
+        base.OnModelCreating( builder );
+
+        InitialDataSeeder.SeedData( builder );
+    }
 }

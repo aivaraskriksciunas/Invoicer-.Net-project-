@@ -17,5 +17,6 @@ public class BillableRecord : IEntity
     public DateTime? EndTime { get; set; }
 
     [Required]
-    public Client client { get; set; }
+    public int ClientId { get; set; }
+    public Client Client { get; set; }
 }
