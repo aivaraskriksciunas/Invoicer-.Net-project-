@@ -48,7 +48,7 @@ public abstract class ApiTest : IAsyncLifetime
         await factory.ResetDatabase();
     }
 
-    protected HttpContent JsonEncode( object data )
+    protected HttpContent SerializeJson( object data )
     {
         return new StringContent( JsonSerializer.Serialize( data ), Encoding.UTF8, "application/json" );
     }

@@ -55,10 +55,11 @@ public class InvoicerApplicationFactory : WebApplicationFactory<Program>, IAsync
         } );
     }
 
-    public Task DisposeAsync()
+    public async Task DisposeAsync()
     {
         _serviceScope.Dispose();
-        return _postgres.DisposeAsync().AsTask();
+        await base.DisposeAsync();
+        await _postgres.DisposeAsync().AsTask();
     }
 
     public async Task ResetDatabase()

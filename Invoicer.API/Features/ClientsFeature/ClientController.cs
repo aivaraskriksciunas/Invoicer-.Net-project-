@@ -71,4 +71,30 @@ public class ClientController : BaseApiController
 
         return BadRequest( model );
     }
+
+    [Route( "{id}" )]
+    [HttpPut]
+    public async Task<ActionResult<ClientDto>> Update(
+        int id,
+        [Bind] CreateClient model )
+    {
+        if ( ModelState.IsValid )
+        {
+            var client = await _clientRepository.FindByIdAsync( id );
+            if (client == null)
+            {
+                return NotFound();
+            }
+
+            var updatedClient = model.ToModel();
+            updatedClient.Id = id;
+
+            await _clientRepository.UpdateAsync( updatedClient );
+            await _dbContext.SaveChangesAsync();
+
+            return Ok( updatedClient );
+        }
+
+        return BadRequest( model );
+    }
 }
