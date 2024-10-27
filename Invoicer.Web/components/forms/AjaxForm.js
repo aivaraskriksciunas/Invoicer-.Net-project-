@@ -3,6 +3,7 @@
 import { useForm, SubmitHandler } from "react-hook-form"
 import { createContext, useState } from 'react'
 import { Button } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
 import backend from '@/backend'
 
 export const AjaxFormContext = createContext()
@@ -11,6 +12,7 @@ export default function AjaxForm({
     action,
     method,
     onSuccess,
+    redirectOnSuccess,
     onError,
     children,
     urlParams,
@@ -22,6 +24,8 @@ export default function AjaxForm({
         handleSubmit,
         formState: { errors },
     } = useForm()
+
+    const router = useRouter();
 
     const [ isLoading, setIsLoading ] = useState( false )
 
@@ -41,6 +45,9 @@ export default function AjaxForm({
 
             if ( typeof onSuccess === 'function' ) {
                 onSuccess( result )
+            }
+            else if ( redirectOnSuccess ) {
+                router.push( redirectOnSuccess )
             }
         }
         catch ( e ) {

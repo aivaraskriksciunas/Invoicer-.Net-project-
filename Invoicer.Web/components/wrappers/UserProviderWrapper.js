@@ -37,7 +37,6 @@ export default function UserProviderWrapper( { children } ) {
 
     return (
         <>
-            <h1>User logged in</h1>
             { children }
         </>
     )

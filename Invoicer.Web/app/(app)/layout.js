@@ -1,13 +1,22 @@
 import UserProviderWrapper from "../../components/wrappers/UserProviderWrapper";
+import { Container, Box, Flex } from '@chakra-ui/react'
+import styles from './layout.module.css'
+import Sidebar from '@/components/ui/Sidebar'
 
 export default function AppLayout( { children } ) {
     return (
         <UserProviderWrapper>
-            <nav>Navbar</nav>
+            <Box background="blue.800" color="white" px="3" py="3">
+                Navbar    
+            </Box>
 
-            <div>
-                {children}
-            </div>
+            <Flex minH="100vh">
+                <Sidebar/>
+
+                <Box p="5" background="gray.50" width="100%">
+                    { children }
+                </Box>
+            </Flex>
         </UserProviderWrapper>
     );
 }

@@ -32,7 +32,7 @@ public class ClientController : BaseApiController
         var id = _userManager.GetUserId( User );
 
         var userClients = await _clientRepository.Query.Where(
-            client => client.UserId.ToString() == id )
+            client => client.UserId == id )
             .ToDto()
             .ToListAsync();
 
