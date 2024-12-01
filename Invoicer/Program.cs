@@ -4,6 +4,7 @@ using Invoicer.Configuration;
 using Invoicer.Core.Data.Models;
 using Invoicer.Api.Configuration;
 using Invoicer.Data;
+using Invoicer.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,7 @@ else {
 
 builder.Services.AddInvoicerIdentity();
 builder.Services.AddRepositories();
+builder.Services.AddApiServices();
 
 builder.Services.AddApiDocumentation();
 

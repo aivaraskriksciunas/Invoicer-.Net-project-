@@ -3,27 +3,31 @@
 import { AjaxFormContext } from './AjaxForm'
 import { useContext } from 'react';
 import {
-    FormControl,
-    FormLabel,
     Input
 } from '@chakra-ui/react'
+import {
+    Field
+} from '@/components/ui/field'
 
 export default function TextField( {
     name, 
     type,
     rules,
+    value,
     children,
 }) {
 
     const { register, errors } = useContext( AjaxFormContext )
-
+    console.log(value)
     return (
-        <FormControl>
-            <FormLabel>{children}</FormLabel>
+        <Field label={children} required={rules?.required}>
             <Input
                 type={type || 'text'}
-                {...register( name, rules || {} )}>
+                {...register( name, {
+                    ...rules, 
+                    value,
+                } )}>
             </Input>
-        </FormControl>
+        </Field>
     )
 }

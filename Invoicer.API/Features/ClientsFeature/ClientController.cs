@@ -14,13 +14,16 @@ public class ClientController : BaseApiController
     private readonly IRepository<Client> _clientRepository;
     private readonly UserManager<User> _userManager;
     private readonly InvoicerDbContext _dbContext;
+    private readonly ClientService _clientService;
 
     public ClientController(
         UserManager<User> userManager,
         IRepository<Client> repository,
+        ClientService service,
         InvoicerDbContext context )
     {
         _clientRepository = repository;
+        _clientService = service;
         _userManager = userManager;
         _dbContext = context;
     }
@@ -80,7 +83,11 @@ public class ClientController : BaseApiController
     {
         if ( ModelState.IsValid )
         {
-            var client = await _clientRepository.FindByIdAsync( id );
+            var client = await _clientService.GetByIdForUser( 
+                id,
+                await _userManager.GetUserAsync( User )
+            );
+
             if (client == null)
             {
                 return NotFound();

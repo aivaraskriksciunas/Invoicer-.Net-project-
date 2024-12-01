@@ -9,7 +9,7 @@ public class BillableRecord : IEntity
 
     [Required]
     [MaxLength(300)]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     [Required]
     public DateTime StartTime { get; set; }
@@ -18,5 +18,5 @@ public class BillableRecord : IEntity
 
     [Required]
     public int ClientId { get; set; }
-    public Client Client { get; set; }
+    public Client? Client { get; set; }
 }

@@ -10,5 +10,7 @@ public static class RegisterRepositoriesService
         services.AddScoped<IRepository<BillableUnit>, Repository<BillableUnit>>();
 
         services.AddScoped<IRepository<Client>, Repository<Client>>();
+
+        services.AddScoped<IRepository<BillableRecord>, Repository<BillableRecord>>();
     }
 }

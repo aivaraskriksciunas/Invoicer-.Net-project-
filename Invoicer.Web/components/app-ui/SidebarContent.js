@@ -6,8 +6,8 @@ import {
     Box,
     Flex,
     Text,
-    CloseButton,
 } from '@chakra-ui/react'
+import { CloseButton } from '@/components/ui/close-button'
 
 import Link from 'next/link'
 

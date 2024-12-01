@@ -23,12 +23,14 @@ export default function Page() {
                 onSuccess={onLogin}
                 onError={onError}
                 urlParams={{ useCookies: true }}>
-                <TextField name="email">Email</TextField>
+                <TextField
+                    name="email">Email</TextField>
                 <TextField
                     name="password"
                     type="password"
-                    rules={{ minLength: 5 } }
-                >Password</TextField>
+                    rules={{ minLength: 5 }}>
+                    Password 
+                </TextField>
             </AjaxForm>
         </>
     )

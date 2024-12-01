@@ -2,6 +2,7 @@
 
 import ApiDataLoader from "@/components/wrappers/ApiDataLoader"
 import { useState } from "react"
+import Link from 'next/link'
 
 export default function ClientsIndex() {
 
@@ -10,7 +11,9 @@ export default function ClientsIndex() {
     return (
         <ApiDataLoader url="/Api/Client" onLoad={data => setClients( data )}>
             {clients.map( client => (
-                <div>{client.name}</div>
+                <Link href={`/clients/${client.id}`} key={client.id}>
+                    {client.name}
+                </Link>
             )) }
         </ApiDataLoader>
     )

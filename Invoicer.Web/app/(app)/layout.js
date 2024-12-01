@@ -1,7 +1,7 @@
 import UserProviderWrapper from "../../components/wrappers/UserProviderWrapper";
 import { Container, Box, Flex } from '@chakra-ui/react'
 import styles from './layout.module.css'
-import Sidebar from '@/components/ui/Sidebar'
+import Sidebar from '@/components/app-ui/Sidebar'
 
 export default function AppLayout( { children } ) {
     return (

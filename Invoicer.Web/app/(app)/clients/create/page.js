@@ -1,8 +1,8 @@
 'use client'
 
 import AjaxForm from "@/components/forms/AjaxForm";
-import TextField from "../../../../components/forms/TextField";
-import ContentBox from "../../../../components/ui/ContentBox";
+import TextField from "@/components/forms/TextField";
+import ContentBox from "@/components/app-ui/ContentBox";
 import { useRouter } from 'next/navigation';
 
 export default function ClientCreate() {

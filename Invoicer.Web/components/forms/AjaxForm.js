@@ -3,7 +3,7 @@
 import { useForm, SubmitHandler } from "react-hook-form"
 import { createContext, useState } from 'react'
 import { Button } from '@chakra-ui/react'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import backend from '@/backend'
 
 export const AjaxFormContext = createContext()
