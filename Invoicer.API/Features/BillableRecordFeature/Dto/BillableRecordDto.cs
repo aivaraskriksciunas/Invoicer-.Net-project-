@@ -5,6 +5,8 @@ namespace Invoicer.Api.Features.BillableRecordFeature.Dto;
 public record BillableRecordDto
 {
     [Required]
+    [MinLength(3)]
+    [MaxLength(255)]
     public string Name { get; set; }
 
     [Required]

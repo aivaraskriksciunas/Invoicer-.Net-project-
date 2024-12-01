@@ -6,6 +6,8 @@ namespace Invoicer.Core.Data.Repositories;
 
 public interface IRepository <T> where T : class, IEntity
 {
+    public InvoicerDbContext Db { get; }
+
     public IQueryable<T> Query { get; }
 
     public Task<T?> FindByIdAsync( int id );

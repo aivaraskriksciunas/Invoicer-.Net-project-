@@ -38,4 +38,33 @@ public class BillableRecordController : BaseApiController
         var records = await _billableRecordService.GetBillableRecordsForClient( client );
         return Ok( records.ToBillableRecordDto() );
     }
+
+    [Route("")]
+    [HttpPost]
+    public async Task<ActionResult<BillableRecordDto>> Create(
+        int clientId, 
+        BillableRecordDto model )
+    {
+        if ( ModelState.IsValid )
+        {
+            var user = await _userManager.GetUserAsync( User );
+            var client = await _clientService.GetByIdForUser( clientId, user );
+            if ( client == null )
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                var record = await _billableRecordService.CreateBillableRecord( model.ToBillableRecord(), client );
+                return Ok( record.ToBillableRecordDto() );
+            }
+            catch ( Exception ex )
+            {
+                return StatusCode( 500 );
+            }
+        }
+
+        return BadRequest( model );
+    }
 }

@@ -1,4 +1,5 @@
-﻿using Invoicer.Core.Data.Models;
+﻿using Invoicer.Core.Data;
+using Invoicer.Core.Data.Models;
 using Invoicer.Core.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,5 +21,15 @@ public class BillableRecordService
     {
         return await _repository.Query.Where( r => r.ClientId == client.Id )
             .ToListAsync();
+    }
+
+    public async Task<BillableRecord?> CreateBillableRecord(
+        BillableRecord record,
+        Client client )
+    {
+        record.ClientId = client.Id;
+        await _repository.CreateAsync( record );
+        await _repository.Db.SaveChangesAsync();
+        return record;
     }
 }

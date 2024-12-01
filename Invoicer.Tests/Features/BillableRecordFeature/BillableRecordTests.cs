@@ -1,5 +1,6 @@
 ﻿using Bogus;
 using Invoicer.Core.Data.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Net.Http.Json;
 
 namespace Invoicer.Tests.Features.BillableRecordFeature;
@@ -92,6 +93,39 @@ public class BillableRecordTests : ApiTest
 
         // Assert 
         Assert.Equal( System.Net.HttpStatusCode.NotFound, response.StatusCode );
+    }
+
+    [Fact]
+    public async void Post_ShouldCreateBillableRecord()
+    {
+        // Arrange 
+        var user = await CreateUser();
+        var httpclient = CreateClientWithAuth( user );
+
+        var client = CreateClientFaker( user ).Generate();
+        await db.AddAsync( client );
+        await db.SaveChangesAsync();
+
+        var faker = new Faker();
+        var reqobj = new
+        {
+            Name = faker.Lorem.Sentence( 3 ),
+            StartTime = faker.Date.Recent( 30 ),
+            EndTime = (DateTime?)null,
+        };
+
+        // Act 
+        var response = await httpclient.PostAsync(
+            $"/Api/Client/{client.Id}/BillableRecord",
+            SerializeJson( reqobj ) );
+
+        // Assert 
+        response.EnsureSuccessStatusCode();
+        Assert.Single( await db.BillableRecords.ToListAsync() );
+        var inserted = await db.BillableRecords.FirstAsync();
+        Assert.Equal( reqobj.Name, inserted.Name );
+        Assert.True( TestUtils.DateTimeEquals( reqobj.StartTime, inserted.StartTime ) );
+        Assert.True( TestUtils.DateTimeEquals( reqobj.EndTime, inserted.EndTime ) );
     }
 
     private Faker<Client> CreateClientFaker( User user )
