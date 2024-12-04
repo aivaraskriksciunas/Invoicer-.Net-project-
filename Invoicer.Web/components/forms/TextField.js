@@ -1,6 +1,6 @@
 'use client'
 
-import { AjaxFormContext } from './AjaxForm'
+import { AjaxFormContext } from './BaseForm'
 import { useContext } from 'react';
 import {
     Input
@@ -18,7 +18,7 @@ export default function TextField( {
 }) {
 
     const { register, errors } = useContext( AjaxFormContext )
-    console.log(value)
+
     return (
         <Field label={children} required={rules?.required}>
             <Input

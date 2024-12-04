@@ -54,15 +54,8 @@ public class BillableRecordController : BaseApiController
                 return NotFound();
             }
 
-            try
-            {
-                var record = await _billableRecordService.CreateBillableRecord( model.ToBillableRecord(), client );
-                return Ok( record.ToBillableRecordDto() );
-            }
-            catch ( Exception ex )
-            {
-                return StatusCode( 500 );
-            }
+            var record = await _billableRecordService.CreateBillableRecord( model.ToBillableRecord(), client );
+            return Ok( record.ToBillableRecordDto() );
         }
 
         return BadRequest( model );

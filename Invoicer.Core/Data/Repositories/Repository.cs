@@ -6,32 +6,32 @@ namespace Invoicer.Core.Data.Repositories;
 
 public class Repository<T> : IRepository<T> where T : class, IEntity
 {
-    public InvoicerDbContext Db { get; private set; }
+    private readonly InvoicerDbContext _db;
 
     public IQueryable<T> Query { 
         get
         {
-            return Db.Set<T>().AsQueryable<T>();
+            return _db.Set<T>().AsQueryable<T>();
         }
     }
 
     public Repository( InvoicerDbContext dbContext )
     {
-        Db = dbContext;    
+        _db = dbContext;    
     }
 
     public async Task CreateAsync( T entity )
     {
         ProcessProperties( entity );
-        await Db.AddAsync( entity );
+        await _db.AddAsync( entity );
     }
 
     public async Task<bool> DeleteAsync( int id )
     {
-        var entity = await Db.Set<T>().FindAsync( id );
+        var entity = await _db.Set<T>().FindAsync( id );
         if ( entity != null )
         {
-            Db.Remove( entity );
+            _db.Remove( entity );
             return true;
         }
 
@@ -46,27 +46,32 @@ public class Repository<T> : IRepository<T> where T : class, IEntity
 
     public async Task<IEnumerable<T>> FindAllAsync()
     {
-        return await Db.Set<T>().ToListAsync();
+        return await _db.Set<T>().ToListAsync();
     }
 
     public async Task<T?> FindByIdAsync( int id )
     {
-        return await Db.FindAsync<T>( id );
+        return await _db.FindAsync<T>( id );
     }
 
     public async Task<bool> UpdateAsync( T entity )
     {
         ProcessProperties( entity );
-        var currentEntity = await Db.Set<T>().FindAsync( entity.Id );
+        var currentEntity = await _db.Set<T>().FindAsync( entity.Id );
         if ( currentEntity == null )
         {
             return false;
         }
 
-        Db.Entry( currentEntity ).CurrentValues.SetValues( entity );
-        Db.Entry( currentEntity ).State = EntityState.Modified;
+        _db.Entry( currentEntity ).CurrentValues.SetValues( entity );
+        _db.Entry( currentEntity ).State = EntityState.Modified;
 
         return true;
+    }
+
+    public async Task<int> SaveChangesAsync()
+    {
+        return await _db.SaveChangesAsync();
     }
 
     private void ProcessProperties( T entity )

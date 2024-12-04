@@ -29,7 +29,7 @@ public class BillableRecordService
     {
         record.ClientId = client.Id;
         await _repository.CreateAsync( record );
-        await _repository.Db.SaveChangesAsync();
+        await _repository.SaveChangesAsync();
         return record;
     }
 }

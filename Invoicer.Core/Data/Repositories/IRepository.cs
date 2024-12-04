@@ -6,8 +6,6 @@ namespace Invoicer.Core.Data.Repositories;
 
 public interface IRepository <T> where T : class, IEntity
 {
-    public InvoicerDbContext Db { get; }
-
     public IQueryable<T> Query { get; }
 
     public Task<T?> FindByIdAsync( int id );
@@ -21,5 +19,7 @@ public interface IRepository <T> where T : class, IEntity
     public Task<bool> UpdateAsync( T entity );
 
     public Task<bool> DeleteAsync( int id );
+
+    public Task<int> SaveChangesAsync();
 
 }
