@@ -55,6 +55,11 @@ public class BillableRecordController : BaseApiController
             }
 
             var record = await _billableRecordService.CreateBillableRecord( model.ToBillableRecord(), client );
+            if ( record == null )
+            {
+                return StatusCode( 500 );
+            }
+
             return Ok( record.ToBillableRecordDto() );
         }
 

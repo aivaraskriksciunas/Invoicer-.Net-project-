@@ -1,4 +1,5 @@
-﻿using Invoicer.Core.Data;
+﻿using Bogus;
+using Invoicer.Core.Data;
 using Invoicer.Core.Data.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
@@ -22,6 +23,8 @@ public abstract class ApiTest : IAsyncLifetime
 
     protected readonly InvoicerApplicationFactory factory;
 
+    protected readonly Faker faker;
+
 
     protected UserManager<User> userManager
     {
@@ -38,7 +41,7 @@ public abstract class ApiTest : IAsyncLifetime
     protected ApiTest( InvoicerApplicationFactory factory )
     {
         this.factory = factory;
-        
+        this.faker = new Faker();
     }
 
     public Task InitializeAsync() => Task.CompletedTask;

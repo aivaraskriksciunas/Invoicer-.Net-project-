@@ -3,28 +3,34 @@ import { useState } from 'react'
 import { Button } from '@chakra-ui/react'
 import PopupAjaxForm from '@/components/forms/PopupAjaxForm'
 import TextField from '@/components/forms/TextField'
+import DateField from '@/components/forms/DateField'
 
-export default function CreateBillableRecord( { clientId } ) {
+export default function CreateBillableRecord( { clientId, onSuccess = () => { } } ) {
 
     return (
         <PopupAjaxForm
             action={`/Api/Client/${clientId}/BillableRecord`}
             method="post"
+            onSuccess={onSuccess}
             trigger={<Button variant="outline">New record</Button>}>
             <TextField
                 name="name"
                 rules={{ required: true, minLenght: 3 }}>
                 Title
             </TextField>
-            <TextField
+            <DateField
                 name="startTime"
-                rules={{ required: true }}>
+                rules={{ required: true }}
+                showTimeInput={true }
+            >
                 Start date
-            </TextField>
-            <TextField
-                name="endTime">
+            </DateField>
+            <DateField
+                name="endTime"
+                showTimeInput
+            >
                 End date
-            </TextField>
+            </DateField>
         </PopupAjaxForm>
     )
 

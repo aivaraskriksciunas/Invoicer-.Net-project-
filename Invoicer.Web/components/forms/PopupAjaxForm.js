@@ -12,6 +12,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 
 export default function PopupAjaxForm( {
@@ -21,6 +22,8 @@ export default function PopupAjaxForm( {
     children,
     ...props
 } ) {
+
+    const [isOpen, setIsOpen] = useState(false)
 
     const displayTriggerButton = () => {
         if ( trigger ) {
@@ -33,14 +36,15 @@ export default function PopupAjaxForm( {
         )
     }
 
-    const onFormSuccess = (data) => {
+    const onFormSuccess = ( data ) => {
+        setIsOpen( false )
         if ( onSuccess ) {
             onSuccess( data )
         }
     }
 
     return (
-        <DialogRoot>
+        <DialogRoot open={isOpen} onOpenChange={state => setIsOpen( state.open )}>
             <DialogTrigger asChild>
                 {displayTriggerButton()}
             </DialogTrigger>

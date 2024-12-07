@@ -52,8 +52,6 @@ var app = builder.Build();
 app.UseCors();
 
 // Add auth routes
-app.MapIdentityApi<User>();
-
 if (app.Environment.IsDevelopment())
 {
     app.UseApiDocumentationUI();

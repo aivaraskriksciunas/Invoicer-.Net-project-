@@ -23,6 +23,8 @@ export default function BaseForm( {
         control,
         handleSubmit,
         formState: { errors },
+        setValue,
+        watch,
     } = useForm()
 
     const router = useRouter();
@@ -65,7 +67,7 @@ export default function BaseForm( {
     return (
         <form onSubmit={handleSubmit( onSubmit )}>
 
-            <AjaxFormContext.Provider value={{ register, control, errors }}>
+            <AjaxFormContext.Provider value={{ register, setValue, watch, control, errors }}>
                 {children( isLoading )}
             </AjaxFormContext.Provider>
 
