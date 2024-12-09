@@ -27,6 +27,12 @@ export default function SidebarContent() {
                     Clients
                 </Box>
             </Link>
+
+            <Link href="/units">
+                <Box _hover={{ border: "1px" }} p="2">
+                    Billable units
+                </Box>
+            </Link>
         </Box>
     )
 }

@@ -9,5 +9,7 @@ public static partial class ClientMapper
 {
     public static partial IQueryable<ClientDto> ToDto( this IQueryable<Client> source );
 
+    public static partial ClientDto ToDto( this Client source );
+
     public static partial Client ToModel( this CreateClient source );
 }

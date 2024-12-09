@@ -1,10 +1,14 @@
-export default function AuthLayout({ children }) {
+import styles from './layout.css'
+import {
+    Box
+} from '@chakra-ui/react'
+
+export default function AuthLayout( { children } ) {
     return (
-        <>
-            Auth
-            <div>
+        <Box bgColor="teal.700" p="20px" minHeight="100vh">
+            <Box bgColor="bg" p="20px">
                 { children }
-            </div>
-        </>
+            </Box>
+        </Box>
     )
 }

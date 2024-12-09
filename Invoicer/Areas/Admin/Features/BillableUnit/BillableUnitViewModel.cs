@@ -7,7 +7,7 @@ namespace Invoicer.Areas.Admin.Features.BillableUnit;
 
 public class BillableUnitViewModel
 {
-    public int? Id { get; set; }
+    public string? Id { get; set; }
 
     [Required]
     [MinLength(2)]

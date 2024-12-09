@@ -44,7 +44,7 @@ public class ClientController : BaseApiController
 
     [Route("{id}")]
     [HttpGet]
-    public async Task<ActionResult<ClientDto>> Get( int id )
+    public async Task<ActionResult<ClientDto>> Get( string id )
     {
         var client = await _clientRepository.FindByIdAsync( id );
         if (client == null)
@@ -52,7 +52,7 @@ public class ClientController : BaseApiController
             return NotFound();
         }
 
-        return Ok( client );
+        return Ok( client.ToDto() );
     }
 
     [Route("")]
@@ -78,7 +78,7 @@ public class ClientController : BaseApiController
     [Route( "{id}" )]
     [HttpPut]
     public async Task<ActionResult<ClientDto>> Update(
-        int id,
+        string id,
         [Bind] CreateClient model )
     {
         if ( ModelState.IsValid )

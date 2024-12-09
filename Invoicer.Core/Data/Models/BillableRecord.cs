@@ -3,10 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Invoicer.Core.Data.Models;
 
-public class BillableRecord : IEntity
+public class BillableRecord : BaseEntity
 {
-    public int Id { get; set; }
-
     [Required]
     [MaxLength(300)]
     public required string Name { get; set; }
@@ -17,6 +15,6 @@ public class BillableRecord : IEntity
     public DateTime? EndTime { get; set; }
 
     [Required]
-    public int ClientId { get; set; }
+    public string ClientId { get; set; }
     public Client? Client { get; set; }
 }

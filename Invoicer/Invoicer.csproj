@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Migrations\" />
     <Folder Include="wwwsrc/css/" />
     <Folder Include="wwwsrc/js/" />
   </ItemGroup>

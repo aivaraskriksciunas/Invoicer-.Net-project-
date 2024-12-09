@@ -52,7 +52,7 @@ public class BillableUnitController : BaseAdminController
         return View( model );
     }
 
-    public async Task<IActionResult> Edit( int id )
+    public async Task<IActionResult> Edit( string id )
     {
         var unit = await _repository.FindByIdAsync( id );
         if ( unit == null ) {
@@ -63,7 +63,7 @@ public class BillableUnitController : BaseAdminController
     }
 
     [HttpPost]
-    public async Task<IActionResult> Edit( int id, [Bind]BillableUnitViewModel model )
+    public async Task<IActionResult> Edit( string id, [Bind]BillableUnitViewModel model )
     {
         if ( ! await _repository.ExistsAsync( id ) ) {
             return NotFound();
@@ -88,7 +88,7 @@ public class BillableUnitController : BaseAdminController
     }
 
     [HttpGet]
-    public async Task<IActionResult> Delete( int id )
+    public async Task<IActionResult> Delete( string id )
     {
         var unit = await _repository.FindByIdAsync( id );
         if ( unit == null )
@@ -100,7 +100,7 @@ public class BillableUnitController : BaseAdminController
     }
 
     [HttpPost]
-    public async Task<IActionResult> DeleteConfirm( int id )
+    public async Task<IActionResult> DeleteConfirm( string id )
     {
         var unit = await _repository.FindByIdAsync( id );
         if (unit == null)

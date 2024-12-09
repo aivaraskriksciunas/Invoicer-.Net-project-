@@ -3,10 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Invoicer.Core.Data.Models;
 
-public class BillableUnit : IEntity
+public class BillableUnit : BaseEntity
 {
-    public int Id { get; set; }
-
     [Required]
     [MaxLength(50)]
     public required string FullName { get; set; }

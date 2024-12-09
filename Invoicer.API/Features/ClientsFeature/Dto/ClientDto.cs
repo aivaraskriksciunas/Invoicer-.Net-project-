@@ -5,7 +5,7 @@ namespace Invoicer.Api.Features.ClientsFeature.Dto;
 
 public record ClientDto
 {
-    public int Id { get; set; }
+    public string Id { get; set; }
 
     [Required]
     [MinLength(2)]

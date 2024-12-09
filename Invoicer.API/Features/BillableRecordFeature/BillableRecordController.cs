@@ -26,7 +26,7 @@ public class BillableRecordController : BaseApiController
     [Route("")]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<BillableRecordDto>>> Index(
-        int clientId )
+        string clientId )
     {
         var user = await _userManager.GetUserAsync( User );
         var client = await _clientService.GetByIdForUser( clientId, user );
@@ -42,7 +42,7 @@ public class BillableRecordController : BaseApiController
     [Route("")]
     [HttpPost]
     public async Task<ActionResult<BillableRecordDto>> Create(
-        int clientId, 
+        string clientId, 
         BillableRecordDto model )
     {
         if ( ModelState.IsValid )

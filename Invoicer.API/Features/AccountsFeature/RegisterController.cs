@@ -13,15 +13,18 @@ namespace Invoicer.Api.Features.AccountsFeature;
 public class RegisterController : BaseApiController
 {
     private UserManager<User> userManager;
+    private SignInManager<User> signInManager;
     private IUserStore<User> userStore;
     private ConfirmationEmailSender confirmationEmailSender;
 
     public RegisterController(
         UserManager<User> userManager,
+        SignInManager<User> signInManager,
         IUserStore<User> userStore,
         ConfirmationEmailSender confirmationEmailSender )
     {
         this.userManager = userManager;
+        this.signInManager = signInManager;
         this.userStore = userStore;
         this.confirmationEmailSender = confirmationEmailSender;
     }
@@ -29,8 +32,9 @@ public class RegisterController : BaseApiController
     [Route( "/register" )]
     [AllowAnonymous]
     [HttpPost]
-    public async Task<ActionResult<UserDto>> Register(
-        [FromBody] RegisterUserDto registration
+    public async Task<ActionResult<AccountDto>> Register(
+        [FromBody] RegisterUserDto registration,
+        [FromServices] NewAccountInitializer accountInitializer
     )
     {
         if ( registration.Password != registration.PasswordConfirm )
@@ -60,7 +64,10 @@ public class RegisterController : BaseApiController
                 user, 
                 HttpContext, 
                 user.Email );
-            return Ok();
+
+            await accountInitializer.InitializeNewAccount( user );
+            await signInManager.SignInAsync( user, true );
+            return Ok( user.ToAccountDto() );
         }
 
         return BadRequest( registration );

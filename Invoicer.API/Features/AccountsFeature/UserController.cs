@@ -27,7 +27,7 @@ public class UserController : BaseApiController
     [ProducesResponseType( StatusCodes.Status200OK )]
     [ProducesResponseType( StatusCodes.Status401Unauthorized )]
     [Produces( "application/json" )]
-    public async Task<ActionResult<UserDto>> getUser()
+    public async Task<ActionResult<AccountDto>> getUser()
     {
         User? user = null;
 
@@ -38,7 +38,7 @@ public class UserController : BaseApiController
 
         if ( user != null )
         {
-            return Ok( user.ToUserDto() );
+            return Ok( user.ToAccountDto() );
         }
 
         return Unauthorized();

@@ -69,10 +69,10 @@ public class ClientTests : ApiTest
 
         // Act
         var response = await client.GetAsync( "/Api/Client" );
-        var body = await response.Content.ReadFromJsonAsync<List<Client>>();
 
         // Assert 
         response.EnsureSuccessStatusCode();
+        var body = await response.Content.ReadFromJsonAsync<List<Client>>();
         Assert.Equal( 3, body.Count );
     }
 

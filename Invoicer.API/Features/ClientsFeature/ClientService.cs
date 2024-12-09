@@ -14,7 +14,7 @@ public class ClientService
         _repository = repository;
     }
 
-    public async Task<Client?> GetByIdForUser( int id, User? user )
+    public async Task<Client?> GetByIdForUser( string id, User? user )
     {
         var client = await _repository.FindByIdAsync( id );
         if ( client == null )

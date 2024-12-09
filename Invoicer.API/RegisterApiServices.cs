@@ -11,5 +11,6 @@ public static class RegisterApiServices
         services.AddTransient<ClientService>();
         services.AddTransient<BillableRecordService>();
         services.AddTransient<ConfirmationEmailSender>();
+        services.AddTransient<NewAccountInitializer>();
     }
 }

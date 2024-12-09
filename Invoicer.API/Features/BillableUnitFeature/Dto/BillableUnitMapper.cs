@@ -1,4 +1,5 @@
-﻿using Invoicer.Core.Data.Models;
+﻿using Invoicer.Api.Features.BillableUnitFeature.Dto;
+using Invoicer.Core.Data.Models;
 using Riok.Mapperly.Abstractions;
 
 namespace Invoicer.Api.Features.BillableUnitFeature;

@@ -26,7 +26,7 @@ public class Repository<T> : IRepository<T> where T : class, IEntity
         await _db.AddAsync( entity );
     }
 
-    public async Task<bool> DeleteAsync( int id )
+    public async Task<bool> DeleteAsync( string id )
     {
         var entity = await _db.Set<T>().FindAsync( id );
         if ( entity != null )
@@ -38,7 +38,7 @@ public class Repository<T> : IRepository<T> where T : class, IEntity
         return false;
     }
 
-    public async Task<bool> ExistsAsync( int id )
+    public async Task<bool> ExistsAsync( string id )
     {
         var entity = await FindByIdAsync( id );
         return entity != null;
@@ -49,7 +49,7 @@ public class Repository<T> : IRepository<T> where T : class, IEntity
         return await _db.Set<T>().ToListAsync();
     }
 
-    public async Task<T?> FindByIdAsync( int id )
+    public async Task<T?> FindByIdAsync( string id )
     {
         return await _db.FindAsync<T>( id );
     }
