@@ -1,4 +1,5 @@
-﻿using Invoicer.Core.Data;
+﻿using Invoicer.Api.Features.BillableRecordFeature.Dto;
+using Invoicer.Core.Data;
 using Invoicer.Core.Data.Models;
 using Invoicer.Core.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -24,12 +25,16 @@ public class BillableRecordService
     }
 
     public async Task<BillableRecord?> CreateBillableRecord(
-        BillableRecord record,
-        Client client )
+        BillableRecordCreationDto record,
+        Client client, 
+        BillableUnit unit )
     {
-        record.ClientId = client.Id;
-        await _repository.CreateAsync( record );
+        var entity = record.ToBillableRecord();
+        entity.ClientId = client.Id;
+        entity.BillableUnitId = unit.Id;
+
+        await _repository.CreateAsync( entity );
         await _repository.SaveChangesAsync();
-        return record;
+        return entity;
     }
 }

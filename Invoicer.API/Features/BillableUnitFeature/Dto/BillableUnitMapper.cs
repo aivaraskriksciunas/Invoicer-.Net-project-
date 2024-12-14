@@ -8,6 +8,7 @@ namespace Invoicer.Api.Features.BillableUnitFeature;
 public static partial class BillableUnitMapper
 {
     public static partial BillableUnit ToBillableUnit( this BillableUnitDto billableUnitDto );
+    public static partial BillableUnit ToBillableUnit( this BillableUnitCreationDto billableUnitCreationDto );
 
     public static partial BillableUnitDto ToBillableUnitDto( this BillableUnit entity );
 

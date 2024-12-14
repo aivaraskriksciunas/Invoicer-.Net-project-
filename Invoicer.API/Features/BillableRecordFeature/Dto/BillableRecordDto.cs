@@ -2,15 +2,18 @@
 
 namespace Invoicer.Api.Features.BillableRecordFeature.Dto;
 
-public record BillableRecordDto
+public class BillableRecordDto
 {
-    [Required]
-    [MinLength(3)]
-    [MaxLength(255)]
     public string Name { get; set; }
 
-    [Required]
     public DateTime StartTime { get; set; }
 
     public DateTime? EndTime { get; set; }
+
+    public double Amount { get; set; } = 0;
+
+    //[Required]
+    //public string? BillableUnitId { get; set; }
+
+    public double PricePerUnit { get; set; } = 0;
 }

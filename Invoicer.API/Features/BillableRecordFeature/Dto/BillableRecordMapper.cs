@@ -8,7 +8,7 @@ public static partial class BillableRecordMapper
 {
     public static partial BillableRecordDto ToBillableRecordDto( this BillableRecord record );
 
-    public static partial BillableRecord ToBillableRecord( this BillableRecordDto dto );
+    public static partial BillableRecord ToBillableRecord( this BillableRecordCreationDto dto );
 
     public static partial IEnumerable<BillableRecordDto> ToBillableRecordDto( this IEnumerable<BillableRecord> list );
 }

@@ -39,4 +39,50 @@ public class BillableUnitTests : ApiTest
         Assert.NotNull( res );
         Assert.Equal( 3, res.Count );
     }
+
+    [Fact]
+    public async void Post_ShouldCreateBillableUnit()
+    {
+        var user = await CreateUser();
+        var httpclient = CreateClientWithAuth( user );
+
+        var r1 = new
+        {
+            FullName = "Meters",
+            ShortName = "m",
+            WholeValuesOnly = false,
+        };
+
+        var r2 = new
+        {
+            FullName = "Units",
+            ShortName = "unit",
+            WholeValuesOnly = true,
+        };
+
+        // Act 
+        var res = await httpclient.PostAsync( "/Api/BillableUnit", SerializeJson( r1 ) );
+        res.EnsureSuccessStatusCode();
+
+        res = await httpclient.PostAsync( "/Api/BillableUnit", SerializeJson( r2 ) );
+        res.EnsureSuccessStatusCode();
+
+        // Assert 
+        var units = await db.BillableUnits.Where( u => u.UserId == user.Id ).ToListAsync();
+        Assert.Equal( 2, units.Count );
+        
+        units = await db.BillableUnits
+            .Where( u => u.FullName == r1.FullName )
+            .Where( u => u.ShortName == r1.ShortName )
+            .Where( u => u.WholeValuesOnly == r1.WholeValuesOnly )
+            .ToListAsync();
+        Assert.Single( units );
+
+        units = await db.BillableUnits
+            .Where( u => u.FullName == r2.FullName )
+            .Where( u => u.ShortName == r2.ShortName )
+            .Where( u => u.WholeValuesOnly == r2.WholeValuesOnly )
+            .ToListAsync();
+        Assert.Single( units );
+    }
 }
