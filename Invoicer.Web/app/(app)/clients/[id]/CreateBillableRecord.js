@@ -1,9 +1,10 @@
 'use client'
 import { useState } from 'react'
-import { Button } from '@chakra-ui/react'
+import { Button, Flex } from '@chakra-ui/react'
 import PopupAjaxForm from '@/components/forms/PopupAjaxForm'
 import TextField from '@/components/forms/TextField'
 import DateField from '@/components/forms/DateField'
+import { AsyncSelectField } from '@/components/forms/AsyncSelectField'
 
 export default function CreateBillableRecord( { clientId, onSuccess = () => { } } ) {
 
@@ -31,6 +32,24 @@ export default function CreateBillableRecord( { clientId, onSuccess = () => { } 
             >
                 End date
             </DateField>
+
+            <Flex gap="2">
+                <TextField
+                    name="amount"
+                    rules={{ required: true }}
+                >
+                    Amount
+                </TextField>
+
+                <AsyncSelectField
+                    name="billableUnitId"
+                    url="/Api/BillableUnit"
+                    optionLabelKey='fullName'
+                    optionValueKey='id'
+                    >
+                    Unit
+                </AsyncSelectField>
+            </Flex>
         </PopupAjaxForm>
     )
 

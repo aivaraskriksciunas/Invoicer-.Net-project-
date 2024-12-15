@@ -14,15 +14,17 @@ export default function TextField( {
     type,
     rules,
     value,
+    placeholder,
     children,
 }) {
 
     const { register, errors } = useContext( AjaxFormContext )
 
     return (
-        <Field label={children} required={rules?.required}>
+        <Field label={children} required={rules?.required} className="form-control">
             <Input
                 type={type || 'text'}
+                placeholder={placeholder}
                 {...register( name, {
                     ...rules, 
                     value,

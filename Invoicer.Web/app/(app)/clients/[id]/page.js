@@ -8,11 +8,22 @@ import { Button, Heading } from '@chakra-ui/react'
 import ContentBox from '@/components/app-ui/ContentBox'
 import BillableRecordList from './BillableRecordList'
 import CreateBillableRecord from './CreateBillableRecord'
+import { ContentBoxHeading } from "../../../../components/app-ui/ContentBoxHeading"
 
 export default function ClientDetail() {
 
     const params = useParams()
     const [client, setClient] = useState( null );
+
+    const getEditClientLink = () => (
+        <Link href={`/clients/${params.id}/edit`}>
+            <Button>Edit</Button>
+        </Link>
+    )
+
+    const getAddRecordLink = () => (
+        <CreateBillableRecord clientId={params.id}></CreateBillableRecord>
+    )
 
     return (
         <ApiDataLoader
@@ -20,16 +31,15 @@ export default function ClientDetail() {
             onLoad={data => setClient( data )}>
 
             <ContentBox>
-                <Heading>{client?.name}</Heading>
-
-                <Link href={`/clients/${params.id}/edit`}>
-                    <Button>Edit</Button>
-                </Link>
+                <ContentBoxHeading actions={getEditClientLink()}>
+                    {client?.name}
+                </ContentBoxHeading>          
             </ContentBox>
 
             <ContentBox>
-                <Heading size="sm">Records</Heading>
-                <CreateBillableRecord clientId={params.id}></CreateBillableRecord>
+                <ContentBoxHeading actions={getAddRecordLink()}>
+                    Records
+                </ContentBoxHeading>
                 <BillableRecordList clientId={params.id} />
             </ContentBox>
 

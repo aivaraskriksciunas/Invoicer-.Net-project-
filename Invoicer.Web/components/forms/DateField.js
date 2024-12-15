@@ -11,9 +11,8 @@ import {
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 
-export default function TextField( {
+export default function DateField( {
     name,
-    type,
     rules,
     value = null,
     children,
@@ -38,7 +37,7 @@ export default function TextField( {
     const selectedDate = watch( name )
 
     return (
-        <Field label={children} required={rules?.required}>
+        <Field label={children} required={rules?.required} className="form-control">
             <DatePicker
                 customInput={<Input />}
                 showTimeInput={showTimeInput}

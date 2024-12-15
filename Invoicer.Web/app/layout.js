@@ -1,4 +1,5 @@
 import Providers from "./providers"
+import './global.scss'
 
 export default function RootLayout( { children } ) {
     return (

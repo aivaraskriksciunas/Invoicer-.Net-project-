@@ -10,7 +10,6 @@ public record CreateClient
     [MaxLength(100)]
     public string Name { get; set; }
 
-    [MinLength(4)]
     [MaxLength(20)]
     public string? PhoneNumber { get; set; }
 

@@ -4,13 +4,16 @@ import ApiDataLoader from "@/components/wrappers/ApiDataLoader"
 import { useState } from "react"
 import { Table } from '@chakra-ui/react'
 import Link from 'next/link'
+import CreateBillableUnitForm from './CreateBillableUnitForm'
 
 export default function BillableUnitsIndex() {
 
     const [units, setUnits] = useState( [] )
+    const [key, setKey] = useState(0)
 
     return (
-        <ApiDataLoader url="/Api/BillableUnit" onLoad={data => setUnits( data )}>
+        <ApiDataLoader url="/Api/BillableUnit" onLoad={data => setUnits( data )} key={key}>
+            <CreateBillableUnitForm onSuccess={() => setKey(key + 1)} />
             <Table.Root>
                 <Table.Header>
                     <Table.Row>
